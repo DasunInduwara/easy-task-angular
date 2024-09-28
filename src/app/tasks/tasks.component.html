@@ -1,5 +1,5 @@
 @if (isShowAddTask) {
-<app-new-task (onCancel)="onCancelAddTask()" (onAdd)="onAddTask($event)"/>
+<app-new-task (onCancel)="onCancelAddTask()" [userId]="user().id"/>
 }
 
 @if (user()) {
@@ -13,7 +13,7 @@
 
     <ul>
         @for (task of selectedUserTasks; track $index) {
-        <li><app-task [task]="task" (onComplete)="onCompleteTask($event)" /></li>
+        <li><app-task [task]="task" /></li>
         }
     </ul>
 </section>

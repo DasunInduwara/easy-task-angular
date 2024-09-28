@@ -1,5 +1,6 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { NewTaskModel, TaskModel } from '../../models/task.models';
+import { TaskService } from '../tasks.service';
 
 @Component({
   selector: 'app-task',
@@ -10,13 +11,12 @@ import { NewTaskModel, TaskModel } from '../../models/task.models';
 })
 export class TaskComponent {
   task = input.required<TaskModel>();
-  onComplete = output<string>();
+
+  public taskService =  inject(TaskService);
 
   public onCompleteTask() {
-    this.onComplete.emit(this.task().id);
+
+    this.taskService.removeTask(this.task().id);
   }
 
-  public addTask(taskData : NewTaskModel){
-    
-  }
 }
